@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block titulo %}Datos {% endblock %}
+
+{% block contenido %}
+
+<div class="table-responsive">
+
+    <div class="card">
+        <div class="card-header"><a name="" id="" class="btn btn-primary" href="{% url 'crear' %}" role="button">Agregar
+                nuevo registro</a></div>
+
+        <div class="card-body">
+            <h4 class="card-title"> Libros</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+
+
+
+                        <tr>
+
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">IdTipoDocumento</th>
+                            <th scope="col">Documento</th>
+                            <th scope="col">IdLugarResidencia</th>
+                            <th scope="col">FechaNacimiento</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Contraseña</th>
+                            <th scope="col">Acciones</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for persona in personas %}
+
+                        <tr class="">
+                            <td>{{ persona.Id }}</td>
+                            <td>{{persona.Nombres }}</td>
+                            <td>{{persona.Apellidos}}</td>
+                            <td>{{persona.IdTipoDocumento.Nombre}}</td>
+                            <td>{{persona.Documento}}</td>
+                            <td>{{persona.LugarResidencia.Nombre}}</td>
+                            <td>{{persona.FechaNacimiento}}</td>
+                            <td>{{persona.Email}}</td>
+                            <td>{{persona.Telefono}}</td>
+                            <td>{{persona.Usuario}}</td>
+                            <td>{{persona.Contraseña}}</td>
+                            <th scope="col">
+                                <a name="" id="" class="btn btn-info" href="{% url 'editar_persona' persona.Id  %}" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_persona' persona.Id %}" role="button">Borrar</a>
+                            </th>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="card">
+        <div class="card-header">
+            
+        </div>
+
+        <div class="card-body">
+            <h4 class="card-title">Ciudades</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ciudad in ciudad %}
+                        <tr>
+                            <td>{{ ciudad.Id }}</td>
+                            <td>{{ ciudad.Nombre }}</td>
+                            <td>{{ ciudad.Descripcion }}</td>
+                            <td>
+                                <a name="" id="" class="btn btn-info" href="{% url 'editar_ciudad' ciudad.Id %}" role="button">Editar</a>
+                                <a name="" id="" class="btn btn-danger" href="{% url 'eliminar_ciudad' ciudad.Id %}" role="button">Borrar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div class="card">
+        <div class="card-header">
+            
+        </div>
+
+        <div class="card-body">
+            <h4 class="card-title">Tipos de Documento</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Abrevacion</th>
+                            <th scope="col">Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo_documento in tipodoc %}
+                        <tr>
+                            <td>{{ tipo_documento.Id }}</td>
+                            <td>{{ tipo_documento.get_Nombre_display}}</td>
+                            <td>{{ tipo_documento.Nombre }}</td>
+                            <td>{{ tipo_documento.Descripcion }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
